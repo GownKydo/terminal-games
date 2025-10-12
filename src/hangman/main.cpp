@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <unistd.h>
+
 #include "hangman.h"
 
 using namespace std;
@@ -140,7 +142,44 @@ void playAlone() {
 }
 
 void playWithFriend() {
-    cout << "\n[!] Feature under development. Please check back later.\n";
+    int choice;
+    cout << "--> Choose mode:\n 1. Host Game (Server)\n 2. Join Game (Client)\n [*]Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1) {
+        // Host Game (Server)
+        clear();
+        cout << "You are now the host. Waiting for player to join...\n";
+        
+        // Aquí podemos crear un hilo o un proceso que ejecute el servidor
+        // Ejecutar el servidor en un hilo separado
+        if (fork() == 0) {
+            // Este es el proceso hijo, que ejecutará el servidor
+            cout << "Running the server...\n";
+            system("./server"); // Asumiendo que tienes un ejecutable llamado `server` para el servidor
+            exit(0);
+        }
+
+    } else if (choice == 2) {
+        // Join Game (Client)
+        clear();
+        string server_ip;
+        cout << "Enter the server IP to connect: ";
+        cin >> server_ip;
+
+        cout << "You are now the client. Connecting to the server...\n";
+        
+        // Aquí ejecutamos el cliente
+        if (fork() == 0) {
+            // Este es el proceso hijo, que ejecutará el cliente
+            cout << "Running the client...\n";
+            system(("./client " + server_ip).c_str()); // Asumiendo que tienes un ejecutable llamado `client`
+            exit(0);
+        }
+
+    } else {
+        cout << "Invalid choice. Please try again.\n";
+    }
 }
 
 void createWordList() {
