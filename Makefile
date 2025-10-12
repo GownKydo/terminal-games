@@ -1,34 +1,45 @@
-# Makefile para compilar el proyecto
-
+# Compiler and flags
 CXX = g++
-CXXFLAGS = -Iheaders -Wall
-BUILD_DIR = build
+CXXFLAGS = -Wall -Iheaders
+
+# Directories
 SRC_DIR = src
-EXEC = game
+BUILD_DIR = build
+OBJ_DIRS = $(BUILD_DIR)/run.o $(BUILD_DIR)/src/hangman/main.o $(BUILD_DIR)/src/nuscaminas/main.o
 
-# Archivos fuente
-SRC = $(SRC_DIR)/hangman/main.cpp $(SRC_DIR)/nuscaminas/main.cpp run.cpp
+# Output binary
+TARGET = game
 
-# Archivos objeto (con las rutas completas para cada archivo fuente)
-OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
+# Source files
+SRCS = run.cpp \
+       src/hangman/main.cpp \
+       src/nuscaminas/main.cpp
 
-# Regla para preparar los directorios
-prepare:
-	mkdir -p $(BUILD_DIR)/src/hangman
-	mkdir -p $(BUILD_DIR)/src/nuscaminas
+# Object files
+OBJS = build/run.o \
+       build/src/hangman/main.o \
+       build/src/nuscaminas/main.o
 
-# Regla para compilar
-all: prepare $(EXEC)
+# Default target
+all: $(TARGET)
 
-$(EXEC): $(OBJ)
-	$(CXX) $(OBJ) -o $(EXEC)
+# Link the object files to create the executable
+$(TARGET): $(OBJS)
+	$(CXX) $(OBJS) -o $(TARGET)
 
-# Regla para compilar los archivos .cpp a .o
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) -c $< -o $@ $(CXXFLAGS)
+# Compile source files into object files
+build/run.o: run.cpp
+	mkdir -p build
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Limpiar los archivos generados
+build/src/hangman/main.o: src/hangman/main.cpp
+	mkdir -p build/src/hangman
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+build/src/nuscaminas/main.o: src/nuscaminas/main.cpp
+	mkdir -p build/src/nuscaminas
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Clean target
 clean:
-	rm -rf $(BUILD_DIR)/*.o $(EXEC)
-
-.PHONY: all clean prepare
+	rm -rf build $(TARGET)
