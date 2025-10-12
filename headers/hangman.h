@@ -2,7 +2,9 @@
 #define HANGMAN_H
 
     void playHangman();
-    void startGame();
+    void drawHangman();
+    void playAlone();
+    void playWithFriend();
     void createWordList();
     void deleteWordlist();
 
