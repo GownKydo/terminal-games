@@ -3,12 +3,12 @@
 
 #include "headers/hangman.h"
 #include "headers/mineDetector.h"
+#include "headers/snake.h"
 
 using namespace std;
 
 // Function prototypes
 void menu();
-void menu_games();
 void clearScreen();
 
 // function games
@@ -32,7 +32,10 @@ int main() {
             clearScreen();
             playMineDetector();
         break;
-
+        case 3:
+            clearScreen();
+            playSnake();
+        break;
         default:
             clearScreen();
             cout << "\n\tGood bye :)\n\n";
@@ -43,10 +46,10 @@ int main() {
 void menu() {
     cout << "\t   #############################\n" << 
             "\t   ##\t\t\t      ##\n"                 <<
-            "\t   ##\t     MAIN MENU\t   ##\n"        <<
+            "\t   ##\t     MAIN MENU\t      ##\n"        <<
             "\t   ##\t\t\t      ##\n"                 <<
             "\t   #############################\n\n";
-    cout << "\t[1] Hangman \t [2] Mine Detector";    
+    cout << " [1] Hangman \t [2] Mine Detector \t[3] Snake Game";
     cout << "\n\t[0] Exit\n";
 }
 
