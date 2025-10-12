@@ -24,10 +24,12 @@ int main() {
     cin >> choose;
     switch (choose) {
         case 1:
+            clearScreen();
             playHangman();
         break;
             
         case 2:
+            clearScreen();
             playMineDetector();
         break;
 
@@ -39,11 +41,11 @@ int main() {
 }
 
 void menu() {
-    cout << "\t#############################\n" << 
-            "\t##\t\t\t   ##\n"                 <<
-            "\t##\t  MAIN MENU\t   ##\n"        <<
-            "\t##\t\t\t   ##\n"                 <<
-            "\t#############################\n\n";
+    cout << "\t   #############################\n" << 
+            "\t   ##\t\t\t      ##\n"                 <<
+            "\t   ##\t     MAIN MENU\t   ##\n"        <<
+            "\t   ##\t\t\t      ##\n"                 <<
+            "\t   #############################\n\n";
     cout << "\t[1] Hangman \t [2] Mine Detector";    
     cout << "\n\t[0] Exit\n";
 }
