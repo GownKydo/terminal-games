@@ -11,10 +11,21 @@ A collection of simple and fun terminal games made in C++ — perfect for playin
 
 ## Requirements
 
+To build and run this project, ensure the following tools and libraries are installed:
+
 1. **C++** Compiler (Clang or GCC)
 2. **Make** (build automation tool)
-3. **ncurses5-compat-libs**
-4. **ncurses5-compat-libs** 
+3. **ncurses** (used to handle keyboard input and display text-based)
+
+* For Arch Linux users
+```bash
+sudo pacman -S clang make ncurses5-compat-libs
+```
+
+* For Debian Linux users
+```bash
+sudo apt install clang build-essential libncurses5
+```
 
 ### Instalation
 
@@ -25,26 +36,15 @@ git clone https://github.com/GownKydo/terminal-games.git
 cd terminal-games
 ```
 
-#### Install dependencies
-
-You’ll need a C++ compiler like clang++ or g++.
-
-1. Install for Arch Linux users and derivates
-```bash
-sudo pacman -S clang make
-```
-
-2. Install for Debian Linux users and derivates
-```bash
-sudo apt install clang build-essential
-```
-
 ### Compile the proyect
 
 Write the command `make` and execute the file using: `./game`
 
+### Screenshots
+
+![Menu](img/menu.jpg)
+![Menu Hangman](img/hangman.jpg)
+
 ## MIT LICENCE
 
 [LICENSE](/LICENSE)
-
-
