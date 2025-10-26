@@ -12,8 +12,9 @@ A collection of simple and fun terminal games made in C++ — perfect for playin
 ## Requirements
 
 1. **C++** Compiler (Clang or GCC)
-
 2. **Make** (build automation tool)
+3. **ncurses5-compat-libs**
+4. **ncurses5-compat-libs** 
 
 ### Instalation
 
